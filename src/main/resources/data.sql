@@ -40,3 +40,10 @@ INSERT INTO Task (task_name,description, date,priority,completed,user_id ) VALUE
   ('Breakfast', 'have breakfast between 8 and 9', TO_DATE('24/Mar/2021'), 2, FALSE, 1),
   ('Lunch', 'have lunch between 1 and 2', TO_DATE('24/Mar/2021'), 2, FALSE, 1),
   ('Dinner', 'have dinner between 6 and 7', TO_DATE('24/Mar/2021'), 2, FALSE, 1);
+  
+  
+  
+INSERT INTO Task (task_name,description, date,priority,completed,user_id ) VALUES
+  ('Breakfast', 'have breakfast between 8 and 9', TO_DATE('24/Mar/2021'), 2, FALSE, 4),
+  ('Lunch', 'have lunch between 1 and 2', TO_DATE('24/Mar/2021'), 2, FALSE, 4),
+  ('Dinner', 'have dinner between 6 and 7', TO_DATE('24/Mar/2021'), 2, FALSE, 4);
