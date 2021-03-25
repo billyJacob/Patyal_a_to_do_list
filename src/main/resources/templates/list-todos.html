@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Patyal</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+
+.tasks {
+ margin-left: auto;
+  margin-right: auto;
+}
+
+.tasks td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: #F6F2FF;
+}
+
+.tasks tr:hover {background-color: #ddd;}
+
+.tasks th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #F44708;
+  color: white;
+}
+
+
+
+</style>
+<body>
+	<table class = "tasks">
+  <thead>
+  
+    <tr>
+      <th>Task ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Updated Date</th>
+      <th>Priority</th>
+      <th>Done / Not Done</th>
+      <th>Completed</th>
+    </tr>
+    
+  </thead>
+  <tbody>
+    <tr th:each="todo : ${todos}">
+      <td th:text="${todo.taskId}">&nbsp;</td>
+      <td th:text="${todo.taskName}">&nbsp;</td>
+      <td th:text="${todo.description}">&nbsp;</td>
+      <td th:text="${todo.date}">&nbsp;</td>
+      <td th:text="${todo.priority}">&nbsp;</td>
+      <td><input type="checkbox"  th:value="${todo.completed}"  th:checked="${todo.completed}">&nbsp;</td>
+      <td>
+      <form action="/Patyal-0.0.1/toggle-done" method = "post">
+      <div>
+      <input type = "hidden" name="completed" th:value ="${todo.completed}" >
+      </div>
+      <div>
+      <input type = "hidden" name="taskId" th:value ="${todo.taskId}" >
+      </div>
+      <button type="submit" class="btn btn-default">toggle</button>
+      </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container">
+  <h2>Add Tasks</h2>
+  <form  action="/Patyal-0.0.1/list-todos" method="post" >
+    <div class="form-group">
+      <label >Task Name:</label>
+      <input type="text" class="form-control" name="taskName" placeholder="Enter Task Name">
+    </div>
+    <div class="form-group">
+      <label >Task Description:</label>
+      <input type="text" class="form-control" name="description" placeholder="Enter Task Description">
+    </div>
+    <div class="form-group">
+      <label >Task Priority:</label>
+      <input type="number" class="form-control" name="priority" placeholder="Enter Task Priority">
+    </div>
+
+    <button type="submit" class="btn btn-default">Add</button>
+  </form>
+</div>
+
+<div class="container">
+  <h2>Delete Tasks</h2>
+  <form action="/Patyal-0.0.1/del-todos" method="post" >
+    <div class="form-group">
+      <!-- <label >Task Id:</label>
+      <input type="number" class="form-control" name="taskId" placeholder="Enter Task ID"> -->
+    
+    <select name="taskId">
+    <option    th:each="todo : ${todos}"   th:value="${todo.taskId}" th:text="${todo.taskId}" >
+      </option>
+      </select>
+      </div>
+ <button  type="submit" class="btn btn-default" onclick = >Delete</button>
+  </form>
+  </div>
+</body>
+
+</html>
